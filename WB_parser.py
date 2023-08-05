@@ -6,3 +6,4 @@ async def cmd_test1(call: types.CallbackQuery):
     await call.message.answer("WB_parse")
     await call.answer()
 
+
