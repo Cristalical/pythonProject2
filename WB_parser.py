@@ -4,4 +4,5 @@ from create_bot import dp
 @dp.callback_query_handler(text="random_value1")
 async def cmd_test1(call: types.CallbackQuery):
     await call.message.answer("WB_parse")
-   # await message.reply(message.from_user.username)
+    await call.answer()
+
