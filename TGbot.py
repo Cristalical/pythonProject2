@@ -1,16 +1,17 @@
 #Сам ботик
 import logging
-from aiogram import executor, types
+from aiogram import executor
 from create_bot import dp
+from WB_parser import cmd_test1
+from OZ_parser import cmd_test2
 
 # Включаем логирование, чтобы не пропустить важные сообщения
 logging.basicConfig(level=logging.INFO)
 
 
-# Хэндлер на команду /test1
-@dp.message_handler(commands="test1")
-async def cmd_test1(message: types.Message):
-    await message.reply("Test 1")
+
+dp.register_message_handler(cmd_test2, commands="OZ")
+dp.register_message_handler(cmd_test1, commands="WB")
 
 
 if __name__ == "__main__":
