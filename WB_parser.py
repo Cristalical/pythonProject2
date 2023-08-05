@@ -2,8 +2,8 @@
 from aiogram import types
 from create_bot import dp
 @dp.callback_query_handler(text="Wildberries")
-async def cmd_test1(call: types.CallbackQuery):
-    await call.message.answer("WB_parse")
-    await call.answer()
+async def WB_parse(message: types.Message, url='sd'):
+    await message.answer("WB_parse ", url)
+
 
 
