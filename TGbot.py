@@ -10,20 +10,22 @@ from keyboard import keyboard
 logging.basicConfig(level=logging.INFO)
 
 
-dp.register_message_handler(keyboard, commands="start")
-
-@dp.message_handler()
-async def filter(message: types.Message):
+#функция выбора парсера по второму слову в списке полученных слов пользователя
+async def filters(message: types.Message):
     msgs = message.text.split()
     if msgs[0] == bot_name:
         msgs.pop(0)
         shop = msgs.pop(0)
-        url = 'https://www.wildberries.ru/catalog/0/search.aspx?search=' + '%20'.join(msgs)
         if shop == 'Wildberries':
-            WB_parse(message, url)
+            url = 'https://www.wildberries.ru/catalog/0/search.aspx?search=' + '%20'.join(msgs)
+            await WB_parse(message, url=url)
         elif shop == 'Ozon':
-            OZ_parse(message, url)
+            url = f"https://www.ozon.ru/search/?text={'+'.join(msgs)}&from_global=true"
+            await OZ_parse(message, url=url)
 
+
+dp.register_message_handler(keyboard, commands="start")
+dp.register_message_handler(filters)
 
 
 
