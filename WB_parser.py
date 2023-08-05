@@ -5,5 +5,6 @@ from create_bot import dp
 async def cmd_test1(call: types.CallbackQuery):
     await call.message.answer("WB_parse")
     await call.answer()
+    await call.message.answer(call.message.from_id)
 
 
