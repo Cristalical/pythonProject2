@@ -5,4 +5,3 @@ from create_bot import dp
 async def cmd_test2(call: types.CallbackQuery):
     await call.message.answer("OZ_parse")
     await call.answer()
-    await call.message.answer(call.message.from_id)
