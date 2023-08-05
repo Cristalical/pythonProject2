@@ -28,12 +28,6 @@ dp.register_message_handler(keyboard, commands="start")
 dp.register_message_handler(filters)
 
 
-
-
-
-
-
-
 if __name__ == "__main__":
     # Запуск бота
     executor.start_polling(dp, skip_updates=True)
