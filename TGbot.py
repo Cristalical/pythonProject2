@@ -17,10 +17,10 @@ async def filters(message: types.Message):
         msgs.pop(0)
         shop = msgs.pop(0)
         if shop == 'Wildberries':
-            url = 'https://www.wildberries.ru/catalog/0/search.aspx?search=' + '%20'.join(msgs)
+            url = 'https://www.wildberries.ru/catalog/0/search.aspx?page=1?&search=' + '%20'.join(msgs)
             await WB_parse(message, url=url)
         elif shop == 'Ozon':
-            url = f"https://www.ozon.ru/search/?text={'+'.join(msgs)}&from_global=true"
+            url = f"https://www.ozon.ru/search/?&page=1&text={'+'.join(msgs)}&from_global=true"
             await OZ_parse(message, url=url)
 
 
