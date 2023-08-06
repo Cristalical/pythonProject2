@@ -1,7 +1,7 @@
 #Парсер 1
 from aiogram import types
 from create_bot import dp
-import requests
+from selenium import webdriver
 @dp.message_handler(text="Wildberries")
 async def WB_parse(message: types.Message, url):
     await message.answer("Начинается парсинг по запросу ⬇️\n"+url)
@@ -12,6 +12,9 @@ async def WB_parse(message: types.Message, url):
     #res = requests.get(url, headers=headers)
     #with open("txt.json", 'w', encoding="utf-8") as f:
     #    f.write(res.json())
+    driver = webdriver.Chrome()
+    driver.get(url)
+    print(driver.page_source)
 
 
 
