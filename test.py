@@ -1,1 +1,4 @@
-;otugesh
+name
+cost
+rating
+url
