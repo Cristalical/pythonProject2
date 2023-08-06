@@ -1,4 +1,4 @@
-import openpyxl
+import openpyxl as op
 
 name = 'Пакетик'
 cost = '10P'
