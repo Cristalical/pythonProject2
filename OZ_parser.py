@@ -10,7 +10,7 @@ async def OZ_parse(message: types.Message, url):
     i = 2
     def parsing(url, i):
         soup = soupManager(url)
-        url_new = 'https://www.ozon.ru' + soup.find('a', class_='a2-a4').get('href')
+        url_new = 'https://www.ozon.ru' + soup.find('div', class_='tw2 a2-a').find('a', class_='a2-a4').get('href')
         cells = soup.find_all('div', class_='i9j ik')
 
         for cell in cells:
@@ -21,13 +21,13 @@ async def OZ_parse(message: types.Message, url):
             except:
                 rating = "Нет оценки"
             link = 'https://www.ozon.ru' + cell.find('a', class_='tile-hover-target yh3 h4y').get('href')
-            save(name, price, rating, link, i)
+            #save(name, price, rating, link, i)
 
         return url_new
     while url:
         url = parsing(url, i)
         i += 1
-        print(url)
+        await message.answer(url)
 
 
 
