@@ -16,7 +16,7 @@ async def OZ_parse(message: types.Message, url):
     # Очистка результатов
     Workbook().save(filename)
     # Основная функция для парсинга данных
-    def parsing(url):
+    async def parsing(url):
         global i
         soup = soupManager(url)
         # Исключение, созданное для окончания работы парсера с помощью выхода из цикла
@@ -52,7 +52,7 @@ async def OZ_parse(message: types.Message, url):
         return url_new
     while url:
         # Вызов функции парсинга и присвоение переменной нового URL
-        url = parsing(url)
+        url = await parsing(url)
         # Вывод нового URL в чат телеграмм для видимости работы парсера
         await message.answer(url)
     doc = open('result_OZ.xlsx', 'rb')
