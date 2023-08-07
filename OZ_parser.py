@@ -11,10 +11,8 @@ i = 2
 @dp.message_handler(text="Ozon")
 async def OZ_parse(message: types.Message, url):
     await message.answer("Начинается парсинг по запросу ⬇️\n"+url)
-    # Имя файла
+    # Имя файла для результатов
     filename = 'result_OZ.xlsx'
-    # Очистка результатов
-    Workbook().save(filename)
     # Основная функция для парсинга данных
     async def parsing(url):
         global i
@@ -55,6 +53,7 @@ async def OZ_parse(message: types.Message, url):
         url = await parsing(url)
         # Вывод нового URL в чат телеграмм для видимости работы парсера
         await message.answer(url)
+    # Отправка в чат файла с результатами
     doc = open('result_OZ.xlsx', 'rb')
     await message.reply_document(doc)
     # Очистка результатов
