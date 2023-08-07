@@ -4,12 +4,17 @@ from soup_manager import soupManager
 from aiogram import types
 from create_bot import dp
 from Saving import save
+from openpyxl import Workbook
 # Переменная для сохранения данных в таблицу, используется для создания строк и
-    # нумерации полученных данных в файле Saving.py
+# нумерации полученных данных в файле Saving.py
 i = 2
 @dp.message_handler(text="Ozon")
 async def OZ_parse(message: types.Message, url):
     await message.answer("Начинается парсинг по запросу ⬇️\n"+url)
+    # Имя файла
+    filename = 'result_OZ.xlsx'
+    # Очистка результатов
+    Workbook().save(filename)
     # Основная функция для парсинга данных
     def parsing(url):
         global i
@@ -50,3 +55,7 @@ async def OZ_parse(message: types.Message, url):
         url = parsing(url)
         # Вывод нового URL в чат телеграмм для видимости работы парсера
         await message.answer(url)
+    doc = open('result_OZ.xlsx', 'rb')
+    await message.reply_document(doc)
+    # Очистка результатов
+    Workbook().save(filename)
