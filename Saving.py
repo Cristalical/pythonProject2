@@ -1,9 +1,9 @@
-from openpyxl import Workbook
+import openpyxl as op
 def save(name, price, rating, link, i):
     # Имя файла
-    filename = 'test.xlsx'
-    # Cоздание Workbook
-    wb = Workbook()
+    filename = 'result_OZ.xlsx'
+    # Cоздание Workbook и открытие файла
+    wb = op.load_workbook(filename)
     sheet = wb.active
     if i == 2:
         # Вводим таблицы
