@@ -25,10 +25,12 @@ async def OZ_parse(message: types.Message, url):
             url_new = False
         # Данные со всех ячеек товаров, сохранённые в список
         cells = soup.find_all('div', class_='io3 o3i')
-
+        # Если ячейки другие
+        if cells == []:
+            cells = soup.find_all('div', class_='o4i io5')
         # Цикл для перебора каждой ячейки из списка
         for cell in cells:
-            cell = cell.find('div', class_='io4')
+            #cell = cell.find('div', class_='io4')
             # Получение имени товара
             name = cell.find('span', class_='tsBody500Medium').text
             # Получение цены товара
@@ -42,7 +44,7 @@ async def OZ_parse(message: types.Message, url):
             # Получение ссылки на товар
             link = 'https://www.ozon.ru' + cell.find('a', class_='tile-hover-target li2 i3l').get('href')
             # Вызов функции для сохранения данных в Excel
-            print(name, price, rating, link)
+            #await message.answer(name, price, rating, link)
             save(name, price, rating, link, i)
             # Увеличение значения переменной для занесения данных в следующую строку в Excel
             i += 1
